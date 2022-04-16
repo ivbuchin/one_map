@@ -1,0 +1,66 @@
+{% load static %}
+
+{% if topics or messages %}
+    {% if topics %}
+    <h5>Совпадения в названиях топиков:</h5>
+        {% for topic in topics %}
+            <div class="card mb-2">
+                <div class="card-body p-2 p-sm-3">
+                    <div class="media forum-item">
+                        <a href="{% url 'users:user_detail' topic.author.id %}">
+                            <img src="{% if topic.author.avatar %} {{ topic.author.avatar.url }}
+                            {% else %} {% static 'images/noavatar.png' %} {% endif %}"
+                            class="mr-3 rounded-circle" width="50" alt="User" />
+                        </a>
+                        <div class="media-body">
+                            <h6><a href="{{ topic.get_absolute_url }}" class="text-body">{{ topic.title }}</a></h6>
+                            <p class="text-secondary">
+                                {{ topic.text }}
+                            </p>
+                            <p class="text-muted"><a href="{% url 'users:user_detail' topic.author.id %}">
+                                {{ topic.author }}</a> replied <span class="text-secondary font-weight-bold">
+                                {{ topic.datetime }}</span>
+                            </p>
+                        </div>
+                        <div class="text-muted small text-center align-self-center">
+                            <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> {{ topic.views }}</span>
+                            <span><i class="far fa-comment ml-2"></i> {{ topic__messages.count }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if messages %}
+    <br>
+    <h5>Совпадения в сообщениях:</h5>
+        {% for message in messages %}
+        <div class="card mb-2">
+            <div class="card-body p-2 p-sm-3">
+                <div class="media forum-item">
+                    <a href="{% url 'users:user_detail' message.author.id %}">
+                        <img src="{% if message.author.avatar %} {{ message.author.avatar.url }}
+                        {% else %} {% static 'images/noavatar.png' %} {% endif %}"
+                        class="mr-3 rounded-circle" width="50" alt="User" />
+                    </a>
+                    <div class="media-body">
+                        <p class="text-body">
+                            {{ message.text }}
+                        </p>
+                        <p class="text-muted"><a href="{% url 'users:user_detail' message.author.id %}">
+                            {{ message.author }}</a> replied <span class="text-secondary font-weight-bold">
+                            {{ message.datetime }}</span>
+                        </p>
+                        <span class="text-secondary">Топик: </span>
+                        <a href="{{ message.topic.get_absolute_url }}">{{ message.topic.title }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+{% else %}
+    <h5>По вашему запросу ничего не найдено</h5>
+{% endif %}

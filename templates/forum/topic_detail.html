@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Первое сообщение топика -->
+<div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+    <a href="{% url 'forum:all_topics' %}" class="btn btn-light btn-sm mb-3 has-icon"><i class="fa fa-arrow-left mr-2">
+    </i>Назад</a>
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="media forum-item">
+                <a href="{% url 'users:user_detail' topic.author.id %}" class="card-link">
+                    <img src="{% if topic.author.avatar %} {{ topic.author.avatar.url }}
+                    {% else %} {% static 'images/noavatar.png' %} {% endif %}" class="rounded-circle" width="50"
+                    alt="User"/>
+                    <small class="d-block text-center text-muted">{{ topic.author.master }}</small>
+                </a>
+                <div class="media-body ml-3">
+                    <a href="{% url 'users:user_detail' topic.author.id %}" class="text-secondary">
+                    {{ topic.author.username}}</a>
+                    <small class="text-muted ml-2">{{ topic.datetime}}</small>
+                    <h5 class="mt-1">{{ topic.title }}</h5>
+                    <div class="mt-3 font-size-sm">
+                        <p>{{ topic.text }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Остальные сообщения -->
+    {% for message in topic.messages.all %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <div class="media forum-item">
+                <a href="{% url 'users:user_detail' topic.author.id %}" class="card-link">
+                    <img src="{% if message.author.avatar %} {{ message.author.avatar.url }}
+                    {% else %} {% static 'images/noavatar.png' %} {% endif %}" class="rounded-circle" width="50"
+                    alt="User" />
+                    <small class="d-block text-center text-muted">{{ message.author.master }}</small>
+                </a>
+                <div class="media-body ml-3">
+                    <a href="{% url 'users:user_detail' topic.author.id %}" class="text-secondary">
+                    {{ message.author.username }}</a>
+                    <small class="text-muted ml-2"> {{ message.datetime }}</small>
+                    <div class="mt-3 font-size-sm">
+                        <p>{{ message.text }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    <!-- Кнопка добавления сообщения -->
+    <a href="{% url 'forum:add_message' topic.id %}" class="btn btn-primary has-icon btn-block">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-plus mr-2">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        НОВОЕ СООБЩЕНИЕ
+    </a>
+    </div>
+</div>
+{% endblock content %}

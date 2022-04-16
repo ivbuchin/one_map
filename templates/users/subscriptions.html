@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container top-buffer">
+    {% if not followers %}
+        <p>Подписок нет</p>
+    {% else %}
+        <h2>Подписки</h2>
+        {% for subscription in subscriptions %}
+            <a href="{{ subscription.get_absolute_url }}">
+                <img src="{{ subscription.avatar.url }}" class="rounded-circle" width="50">
+                {{ subscription.username }}
+            </a>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<style>
+.top-buffer { margin-top:20px;
+              margin-bottom:20px;
+}
+</style>
+{% endblock content %}

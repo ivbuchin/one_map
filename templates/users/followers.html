@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container top-buffer">
+    {% if not followers %}
+        <p>Подписчиков нет</p>
+    {% else %}
+        <h2>Подписчики</h2>
+        {{ followers }}
+        {% for follower in followers %}
+            <a href="{{ follower.get_absolute_url }}">
+                <img src="{{ follower.avatar.url }}" class="rounded-circle" width="50">
+                {{ follower.username }}
+            </a>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<style>
+.top-buffer { margin-top:20px;
+              margin-bottom:20px;
+}
+</style>
+{% endblock content %}

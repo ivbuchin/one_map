@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="post" class="top-buffer">
+    {% csrf_token %}
+        <p>Вы действительно хотите удалить свой профиль?</p>
+        <a href="{{ request.META.HTTP_REFERER }}" type="button" class="btn btn-primary">Отмена</a>
+        <input type="submit" value="Да" class="btn btn-light">
+    </form>
+</div>
+
+<style>
+.top-buffer { margin-top:20px;
+              margin-bottom:20px;
+}
+</style>
+{% endblock %}

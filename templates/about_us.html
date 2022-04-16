@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container top-buffer">
+    <h1>О нас</h1>
+    <p>
+        В этом проекте представлен <a href="{% url 'tutorial:lessons_by_branch' %}">онлайн-учебник</a>, содержащий
+        уроки, написанные специалистами по философии, психологии, программированию, инженерии, физике, биологии,
+        истории.
+    </p>
+    <p>
+        Также, есть <a href="{% url 'forum:all_topics' %}">форум</a>, в котором мастера пишут уроки, а
+        обычные пользователи могут задать свои вопросы, или внести предложения.
+    </p>
+</div>
+
+<style>
+.top-buffer { margin-top:20px;
+              margin-bottom:20px;
+}
+</style>
+{% endblock content %}

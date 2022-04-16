@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    <p >Возникла ошибка входа.
+        Возможно, вы ввели неверное имя пользователя, или пароль. Возможно, ваш аккаунт удален.</p>
+</div>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+        <p>Ваша учетная запись не имеет доступа к этой странице. Чтобы продолжить,
+           пожалуйста, войдите в систему с учетной записью, у которой есть доступ.</p>
+    {% else %}
+        <p>Пожалуйста, войдите в систему, чтобы просмотреть эту страницу.</p>
+    {% endif %}
+{% endif %}
+
+<div class="container top-buffer">
+    <form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+            </div>
+        {% endfor %}
+
+        <div class="modal-footer">
+            <a href="{% url 'users:register' %}" class="btn btn-light">Зарегистрироваться</a>
+            <a href="{% url 'users:password_reset' %}" class="btn btn-light">Забыли пароль?</a>
+            <input type="submit" value="Войти" class="btn btn-primary">
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+    </form>
+</div>
+
+<style>
+.top-buffer { margin-top:20px;
+              margin-bottom:20px;
+}
+</style>
+{% endblock %}

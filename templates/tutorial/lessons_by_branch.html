@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container top-buffer">
+    <p> Здесь представлены все уроки по категориям. </p>
+
+    {% for branch in branchs %}
+        <h4>{{ branch.name }}</h4>
+        <ul class="list-group">
+            {% for lesson in branch.lessons.all %}
+            <li class="list-group-item"><a href="{{ lesson.get_absolute_url }}">{{ lesson.title }}</a></li>
+            {% endfor %}
+        </ul>
+        <br>
+    {% endfor %}
+</div>
+
+<style>
+.top-buffer { margin-top:20px;
+              margin-bottom:20px; }
+</style>
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <br>
+      <div class="lessons-and-paginate">
+
+        <!-- Уроки -->
+        {% for lesson in lesson_list %}
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{ lesson.image.url }}" alt="Card image cap" width="100px">
+            <div class="card-body">
+              <h2 class="card-title">{{ lesson.title }}</h2>
+              <p class="card-text">{{ lesson.content|safe }}</p>
+              <a href="{{ lesson.get_absolute_url }}" class="btn btn-primary">Читать</a>
+            </div>
+            <div class="card-footer text-muted">
+              {{ lesson.date }} &nbsp; &nbsp;
+              <a class="text-secondary" href="{% url 'tutorial:filter_by_branch' lesson.branch.id %}">
+                {{ lesson.branch }}</a> &nbsp; &nbsp;
+              <img src="{% static 'images/views.png' %}" height="25px"> {{ lesson.count }} &nbsp; &nbsp;
+              {% if user.is_authenticated %}
+                {% if lesson.id|stringformat:"s" in request.COOKIES %}
+                  <a href="{% url 'tutorial:remove_like' lesson.id %}">
+                    <img src="{% static 'images/liked.png' %}" height="18px"></a>
+                {% else %}
+                  <a href="{% url 'tutorial:add_like' lesson.id %}">
+                    <img src="{% static 'images/liked.png' %}" height="18px"></a>
+                {% endif %}
+              {% else %}
+                <img src="{% static 'images/liked.png' %}" height="18px">
+              {% endif %}
+            &nbsp; {{ lesson.likes }}
+            </div>
+          </div>
+        {% endfor %}
+
+        <!-- Пагинация -->
+        <ul class="pagination justify-content-center mb-4">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1">&laquo; </a>
+            </li>
+            <li>
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt; </a>
+            </li>
+          {% endif %}
+
+          <li class="page-item disabled">
+            <span class="page-link text-muted">
+                {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+          </li>
+
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}"> &gt;</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% include 'include/sidebar.html' %}
+  </div>
+</div>
+{% endblock content %}

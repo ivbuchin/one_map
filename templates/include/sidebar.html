@@ -1,0 +1,45 @@
+<div class="col-md-4">
+
+  <!-- Поиск -->
+  <div class="card my-4">
+    <h5 class="card-header">Поиск</h5>
+    <div class="card-body">
+      <form action="{% url 'tutorial:search' %}" method="get">
+        <div class="input-group">
+          <input type="search" class="form-control" name="q" placeholder="Что найти?">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-secondary" type="button">Поиск</button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ветки -->
+  <div class="card my-4">
+    <h5 class="card-header">Ветки</h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <ul class="list-unstyled mb-0">
+            {% for branch in branchs %}
+              <li>
+                <a class="branch" href="{% url 'tutorial:filter_by_branch' branch.id %}">{{ branch.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Популярные уроки -->
+  <div class="card my-4">
+    <h5 class="card-header">Популярные</h5>
+    <div class="card-body">
+      {% for lesson in most_popular_lessons %}
+        <p><a href="{{ lesson.get_absolute_url }}">{{ lesson.title }}</a></p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
