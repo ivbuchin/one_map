@@ -11,3 +11,7 @@
 7. Запустите локальный сервер командой `python manage.py runserver`;
 8. Откроейте сайт проекта, введя в адресной строке браузера: [127.0.0.1:8000](http://127.0.0.1:8000/);
 12. Для доступа к админ-панели, введите в адресной строке: [127.0.0.1:8000/admin](http://127.0.0.1:8000/admin/).
+
+<br>
+
+<img alt="printscreen" src="https://github.com/ivbuchin/one_map/blob/master/printscreen.png">
