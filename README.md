@@ -14,4 +14,4 @@
 
 <br>
 
-<img alt="printscreen" src="https://github.com/ivbuchin/one_map/blob/master/printscreen.png">
+<img width="800px" alt="printscreen" src="https://github.com/ivbuchin/one_map/blob/master/printscreen.png">
