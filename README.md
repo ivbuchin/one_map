@@ -1,5 +1,3 @@
-<img align="right" width="50px" alt="OneMap" src="https://github.com/ivbuchin/one_map/blob/master/OM.jpg">
-
 # One Map 
 «One Map» — проект образовательной платформы, содержащей онлайн-учебник, форум и элементы социальной сети. Проект написан на Django.
 
