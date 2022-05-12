@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container top-buffer">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
@@ -20,8 +20,9 @@
 </div>
 
 <style>
-.top-buffer { margin-top:20px;
-              margin-bottom:20px;
+.top-buffer {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 </style>
 {% endblock %}
