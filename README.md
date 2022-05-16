@@ -1,29 +1,29 @@
 # One Map 
-**«One Map»** — проект образовательной платформы, содержащей онлайн-учебник, форум и элементы социальной сети. Проект написан на Django.
+**«One Map»** is a project of an educational platform containing an online textbook, a forum and elements of a social network. The project is written in Django.
 
-Чтобы запустить проект, выполните следующие действия:
-1. Скачайте код проекта
-2. Создайте и активируйте виртуальное окружение
-4. Установите зависимости:
+To start the project, follow these steps:
+1. Download the project code
+2. Create and activate a virtual environment
+4. Install dependencies:
 
         pip install -r requirements/dev.txt
 
-5. Сгенерируйте SECRET KEY (например, на сайте https://djecrety.ir/) и вставьте его в настройки проекта
-6. Создайте и выполните миграции: 
+5. Generate a SECRET KEY (for example, on the website https://djecrety.ir /) and paste it into the project settings
+6. Create and perform migrations: 
 
         python manage.py makemigrations
         python manage.py migrate
 
-10. Создайте суперпользователя: 
+10. Create a Superuser:
 
         python manage.py createsuperuser
 
-12. Запустите локальный сервер:
+12. Start the local server:
 
         python manage.py runserver
 
-14. Откроейте сайт проекта, введя в адресной строке браузера: [127.0.0.1:8000](http://127.0.0.1:8000/)
-15. Для доступа к админ-панели, введите в адресной строке: [127.0.0.1:8000/admin](http://127.0.0.1:8000/admin/)
+14. Open the project website by typing in the browser address bar: 127.0.0.1:8000
+15. To access the admin panel, enter in the address bar: 127.0.0.1:8000/admin
 
 <br>
 
