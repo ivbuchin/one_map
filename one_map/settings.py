@@ -50,11 +50,6 @@ INSTALLED_APPS = [
     'tutorial',
     'followers',
     'actions',
-
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.vk',
 ]
 
 MIDDLEWARE = [
