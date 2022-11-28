@@ -6,7 +6,7 @@ To start the project, follow these steps:
 2. Create and activate a virtual environment
 4. Install dependencies:
 
-        pip install -r requirements/dev.txt
+        pip install -r requirements.txt
 
 5. Generate a SECRET KEY (for example, on the website https://djecrety.ir /) and paste it into the project settings
 6. Create and perform migrations: 
